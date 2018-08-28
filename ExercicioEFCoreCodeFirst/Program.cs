@@ -131,7 +131,20 @@ namespace ExercicioEFCoreCodeFirst
                                     genero.Faturamento, genero.Avaliacao, genero.Quantidade);
                 }
 
-               
+                Console.WriteLine();
+                Console.WriteLine("Todos atores que interpretaram James Bond (press any key...):");
+                Console.ReadKey();
+                var q7 = from f in db.Characters
+                         from m in db.Actors
+                         where f.Character == "James Bond"
+                         select new {
+                             Nome = m.Name
+                };
+                foreach (var nome in q7)
+                {
+                    Console.WriteLine("Ator: {0}", nome.Nome);
+                }
+
 
                 #endregion
 
@@ -387,11 +400,13 @@ namespace ExercicioEFCoreCodeFirst
                       #endregion
             };
 
-            actorCharacters.ForEach(s => context.Characters.AddOrUpdate(ac => new { ac.ActorId, ac.MovieId }, s));
+            //actorCharacters.ForEach(s => context.Characters.AddOrUpdate(ac => new { ac.ActorId, ac.MovieId }, s));
                   context.Characters.AddRange(actorCharacters);
                   context.SaveChanges();
             #endregion
 
+            
+            
         }
     }
 }

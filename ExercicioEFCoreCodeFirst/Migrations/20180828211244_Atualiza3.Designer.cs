@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExercicioEFCoreCodeFirst.Migrations
 {
     [DbContext(typeof(MovieContext))]
-    [Migration("20180828180456_Criacao")]
-    partial class Criacao
+    [Migration("20180828211244_Atualiza3")]
+    partial class Atualiza3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,38 @@ namespace ExercicioEFCoreCodeFirst.Migrations
                 .HasAnnotation("ProductVersion", "2.1.2-rtm-30932")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("ExercicioEFCoreCodeFirst.PL.Actor", b =>
+                {
+                    b.Property<int>("ActorId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateBirth");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("ActorId");
+
+                    b.ToTable("Actors");
+                });
+
+            modelBuilder.Entity("ExercicioEFCoreCodeFirst.PL.ActorMovie", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ActorId");
+
+                    b.Property<string>("Character");
+
+                    b.Property<int>("MovieId");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Characters");
+                });
 
             modelBuilder.Entity("ExercicioEFCoreCodeFirst.PL.Genre", b =>
                 {

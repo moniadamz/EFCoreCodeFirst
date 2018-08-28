@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExercicioEFCoreCodeFirst.Migrations
 {
     [DbContext(typeof(MovieContext))]
-    [Migration("20180828193319_NovaAlteracao2")]
-    partial class NovaAlteracao2
+    [Migration("20180828211414_Atualiza2")]
+    partial class Atualiza2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -49,10 +49,6 @@ namespace ExercicioEFCoreCodeFirst.Migrations
                     b.Property<int>("MovieId");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("ActorId");
-
-                    b.HasIndex("MovieId");
 
                     b.ToTable("Characters");
                 });
@@ -95,19 +91,6 @@ namespace ExercicioEFCoreCodeFirst.Migrations
                     b.HasIndex("GenreID");
 
                     b.ToTable("Movies");
-                });
-
-            modelBuilder.Entity("ExercicioEFCoreCodeFirst.PL.ActorMovie", b =>
-                {
-                    b.HasOne("ExercicioEFCoreCodeFirst.PL.Actor", "Actor")
-                        .WithMany()
-                        .HasForeignKey("ActorId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("ExercicioEFCoreCodeFirst.PL.Movie", "Movie")
-                        .WithMany()
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("ExercicioEFCoreCodeFirst.PL.Movie", b =>

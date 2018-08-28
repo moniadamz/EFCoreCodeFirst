@@ -2,7 +2,7 @@
 
 namespace ExercicioEFCoreCodeFirst.Migrations
 {
-    public partial class NovaAlteracao3 : Migration
+    public partial class Atualiza2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
