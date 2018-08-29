@@ -135,16 +135,34 @@ namespace ExercicioEFCoreCodeFirst
                 Console.WriteLine("Todos atores que interpretaram James Bond (press any key...):");
                 Console.ReadKey();
                 var q7 = from f in db.Characters
-                         from m in db.Actors
+                         join m in db.Actors on f.ActorId equals m.ActorId
                          where f.Character == "James Bond"
-                         select new {
+                         select new
+                         {
                              Nome = m.Name
-                };
-                foreach (var nome in q7)
+                         };
+                foreach (var nome in q7.Distinct())
                 {
                     Console.WriteLine("Ator: {0}", nome.Nome);
                 }
 
+                Console.WriteLine();
+                Console.WriteLine("Elenco do filme Jurassic Park (press any key...):");
+                Console.ReadKey();
+                var q8 = from f in db.Characters
+                         join a in db.Actors on f.ActorId equals a.ActorId
+                         join m in db.Movies on f.MovieId equals m.ID
+                         where m.Title == "Jurassic Park"
+                         select new
+                         {
+                             Nome = a.Name
+                         };
+                foreach (var nome in q8)
+                {
+                    Console.WriteLine("Ator: {0}", nome.Nome);
+                }
+
+               
 
                 #endregion
 
@@ -406,7 +424,7 @@ namespace ExercicioEFCoreCodeFirst
             #endregion
 
             
-            
+
         }
     }
 }
