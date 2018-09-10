@@ -162,6 +162,8 @@ namespace ExercicioEFCoreCodeFirst
                     Console.WriteLine("Ator: {0}", nome.Nome);
                 }
 
+
+
                
 
                 #endregion
